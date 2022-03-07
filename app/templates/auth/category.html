@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% import 'macros.html' as macro%}
+
+<!-- content block -->
+{% block content %}
+<h4 class="text-center">{{category.name|upper}} Pitch/h4>
+<hr>
+{% if pitches %}
+
+{{ macro.displayPitches(pitches)}}
+
+{%else%}
+<div class="category">
+  <h4 style="padding:8%; text-align:center; font-size:40px">Sorry! there are no pitches available</h4>
+</div>
+
+
+{% endif %}
+<a class="btn btn-primary text-center text-danger" href="/category/pitch/new/{{category.id}}">Pitch!</a>{% endblock %}
