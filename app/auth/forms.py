@@ -33,3 +33,12 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('That user name is already used. please input another name!')
 
 
+#login class that  takes inputs from the user
+class LoginForm(FlaskForm):
+    email = StringField('Your email address', validators=[Required(),Email()])
+    password = PasswordField('Password', validators=[Required()])
+    remember = BooleanField('Remember me')
+    submit = SubmitField('Sign In')
+
+
+
