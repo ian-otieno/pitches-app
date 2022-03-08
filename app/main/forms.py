@@ -1,24 +1,27 @@
-from wtforms.validators import Required
-from wtforms import StringField, TextAreaField, SubmitField
 from flask_wtf import FlaskForm
+from wtforms import StringField,PasswordField,SubmitField
+from wtforms import ValidationError
+from wtforms.validators import Required,Email,EqualTo
+from ..models import User
+from wtforms import StringField,PasswordField,BooleanField,SubmitField
 
-class PitchForm(FlaskForm):
-    """
-    Class to create a wtf form for creating a pitch
-    """
-    content = TextAreaField('input your pitch')
-    submit = SubmitField('submit')
+class RegistrationForm(FlaskForm):
+    email = StringField('Your Email Address', validators=[Required(),Email()])
+    username  = StringField('Enter your username', validators=[Required()])
+    password = PasswordField('Password', validators=[Required(), EqualTo('password_confirm',message ='Password must match')])
+    password_confirm =  PasswordField('Confirm Passwords',validators = [Required()])
+    submit = SubmitField('Sign Up')
 
-class CommentForm(FlaskForm):
-    """
-    Class to create a wtf form for creating a pitch
-    """
-    opinion = TextAreaField('write your comment here..')
-    submit = SubmitField('submit')
+    def validate_email(self, data_field):
+        if User.query.filter_by(email = data_field.data).first():
+            raise ValidationError('There is an account with that email')
+    
+    def validate_username(self,data_field):
+        if User.query.filter_by(username = data_field.data).first():
+            raise ValidationError('That username is already used')
 
-class CategoryForm(FlaskForm):
-    """
-    Class for creating  wtf form for creating a pitch
-    """
-    name =  StringField('Category Name', validators=[Required()])
-    submit = SubmitField('Create')
+class LoginForm(FlaskForm):
+    email = StringField('Your Email Address',validators=[Required(),Email()])
+    password = PasswordField('Password',validators =[Required()])
+    remember = BooleanField('Remember me')
+    submit = SubmitField('Sign In')
