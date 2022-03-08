@@ -1,0 +1,3 @@
+Hello {{user.username}}
+Welcome to Pitches. This is a golden chance.
+ You have signed up for our application and welcome you to the  ptiches. 
