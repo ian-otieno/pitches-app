@@ -1,8 +1,8 @@
-# pitches-app
+# Pitches-app
 This is a  python/flask web application where users have 60 seconds to write out their pitches in different categories and have those pitches voted on. The users also have a chance to comment on each pitch posted.
  
  ## Author
-#By **[IAN OTIENO](https://github.com/ian-otieno)**
+By **[IAN OTIENO](https://github.com/ian-otieno)**
 
 ## User Stories
 These are the behaviours/features that the application implements for use by a user.
