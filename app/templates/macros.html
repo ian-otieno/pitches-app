@@ -1,0 +1,24 @@
+{% endmacro %}
+{% macro displayComment(comments) %}
+<ul>
+	<h1>COMMENTS:</h1>
+	{% if comments %}
+	{% for comment in comments %}
+	<div class="row text-center">
+		<div class="card">
+			<div card-header>
+				<p>Posted by: {{comment.user.username}}</p>
+			</div>
+			<div class="card-body">
+				<p style="color: brown; ">{{ comment.comment }}</p>
+			</div>
+			<hr>
+		</div>
+	</div>
+	{% endfor %}
+	{% else %}
+
+	<h3>Be the first to add a comment on this Pitch !</h3>
+	{%endif%}
+</ul>
+{% endmacro %}
