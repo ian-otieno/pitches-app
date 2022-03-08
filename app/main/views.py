@@ -109,3 +109,24 @@ def update_pic(name):
         db.session.commit()
     return redirect(url_for('main.profile',name=name))
 
+@main.route('/category/business',methods= ['POST','GET'])
+def displayBusinessCategory():
+    business = Pitch.get_pitches('business')
+    return render_template('business.html',business = business)
+
+@main.route('/category/promotion',methods= ['POST','GET'])
+def displayPromotionCategory():
+    promotion= Pitch.get_pitches('publicy')
+    return render_template('publicity.html',promotion = promotion)
+
+@main.route('/category/education',methods= ['POST','GET'])
+def displayEducationCategory():
+    educatiion = Pitch.get_pitches('education')
+    return render_template('education.html',educatiion =educatiion)
+
+@main.route('/category/interview',methods= ['POST','GET'])
+def displayInterviewCategory():
+    interview = Pitch.get_pitches('interview')
+    return render_template('interview.html',interview = interview)
+
+
