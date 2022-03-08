@@ -130,3 +130,36 @@ def displayInterviewCategory():
     return render_template('interview.html',interview = interview)
 
 
+# @main.route('/update/<int:id>', methods=['GET', 'POST'])
+# def update_post(id):
+#     post = post.query.get_or_404(id)
+#     post_form = PostForm()
+#     if post_form.validate_on_submit():
+#         post.title = post_form.title.data
+#         post.content = post_form.content.data
+#         db.session.add(post)
+#         db.session.commit()
+
+#         return redirect(url_for('main.index'))
+#     elif request.method == 'GET':
+#         form.title.data = post.title
+#         form.post.data = post.content
+#     return render_template('edit_post.html',post=postr, post_form=post_form)
+
+
+#  delete post
+# @main.route('/delete_post/<int:id>', methods=['GET', 'POST'])
+
+# def delete_post(id):
+#     post = Post.query.get_or_404(id)
+#     db.session.delete(post)
+#     db.session.commit()
+#     return redirect(url_for('main.index')) 
+
+# @main.route("/post/<int:id>/<int:comment_id>/delete")
+# def delete_comment(id, comment_id):
+#     post = Post.query.filter_by(id = id).first()
+#     comment = Comment.query.filter_by(id = comment_id).first()
+#     db.session.delete(comment)
+#     db.session.commit()
+#     return redirect(url_for("main.post", id = post.id))
