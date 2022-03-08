@@ -5,6 +5,8 @@ from ..models import User, Pitch, Comments, PitchCategory
 from flask_login import login_required, current_user 
 from .forms import PitchForm, CommentsForm, UpdateProfile
 
+
+
 @main.route('/', methods= ['GET','POST'])
 def index():
     '''
