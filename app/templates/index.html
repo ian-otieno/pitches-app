@@ -1,1 +1,42 @@
-<h1> Hello World </h1>
+{% extends 'bootstrap/base.html' %}
+{% import 'macros.html' as macro %}
+{% block navbar %}
+{% include 'navbar.html'%}
+{%endblock%}
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+{%block content%}
+<div class="container" style="margin-right: 60pxpx; margin-top: 5px;">
+  <h3 style="color: aqua;text-align: center">{{title}} <br>
+    <a style="text-align: center; color: brown;" class="navbar-brand" href="/pitches/new"> Add Pitch </a>
+  </h3>
+  <br>
+  <hr>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+  <div class="tab-content">
+    <div class="container tab-pane active"><br>
+      <hr>
+      <h2 style="color: aqua; text-align: center;font-family: sans-serif;">Education Pitches</h2>
+      {{ macro.display(education) }}
+      <a style="text-align: center; color: brown; align-items: center;" class="navbar-brand" href="/pitches/new"> Add
+        Pitch </a>
+      <hr>
+      <h2 style="color: aqua; text-align: center;font-family: sans-serif;">Business Pitches</h2>
+      {{ macro.display(business)}}
+      <a style="text-align: center; color: brown; align-items: center;" class="navbar-brand" href="/pitches/new"> Add
+        Pitch </a>
+      <hr>
+      <h2 style="color: aqua; text-align: center;font-family: sans-serif;">Promotion Pitches</h2>
+      {{ macro.display(publicity) }}
+      <a style="text-align: center; color: brown; align-items: center;" class="navbar-brand" href="/pitches/new"> Add
+        Pitch </a>
+      <hr>
+      <h2 style="color: aqua; text-align: center;font-family: sans-serif;">Interview Pitches</h2>
+      {{ macro.display(interview) }}
+      <a style="text-align: center; color: brown; align-items: center;" class="navbar-brand" href="/pitches/new"> Add
+        Pitch </a>
+      <hr>
+    </div>
+  </div>
+  {%endblock%}
