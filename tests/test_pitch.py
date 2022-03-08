@@ -3,7 +3,7 @@ from app.models import Pitch, User
 
 class PitchTest(unittest.TestCase):
     def setUp(self):
-        self.user_iano=User(username='ian', password='', email='jian@gmail.com')
+        self.user_iano=User(username='ian', password='', email='joseph@gmail.com')
         self.new_pitch=Pitch(title='iano', description='time is money', category='business', user=self.user_iano)
 
     def tearDown(self):

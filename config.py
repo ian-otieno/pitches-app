@@ -20,7 +20,7 @@ class ProdConfig(Config):
         Arg:
             Config: th parent configuration class with general configuration settings
     '''
-    # SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://iano:ianoteno2@localhost/pitch'
+    # 'SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://iano:ianoteno2@localhost/pitches'
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL","")
     if SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
         SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgresql://", 1)
