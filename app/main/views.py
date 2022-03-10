@@ -5,24 +5,23 @@ from ..models import User, Pitch, Comments, PitchCategory
 from flask_login import login_required, current_user 
 from .forms import PitchForm, CommentsForm, UpdateProfile
 
-
-
 @main.route('/', methods= ['GET','POST'])
 def index():
     '''
     view page root function that return the index page and its data
     '''
     pitches = Pitch.query.all()
+    love = Pitch.query.filter_by(category = 'Love').all()
     education = Pitch.query.filter_by(category = 'Education').all()
     business = Pitch.query.filter_by(category = 'Business').all()
     interview = Pitch.query.filter_by(category = 'Interview').all()
-    publicity= Pitch.query.filter_by(category = 'publicity').all()
+    promotion = Pitch.query.filter_by(category = 'Promotion').all()
 
     all_category = PitchCategory.get_categories()
     all_pitches = Pitch.query.order_by('id').all()
-    title = "This is a golden chance"
+    title = "This is a golden opportunity change your life"
    
-    return render_template('index.html', title=title,pitches = pitches, education = education, business = business, interview = interview, publicity = publicity, all_category=all_category, all_pitches=all_pitches)
+    return render_template('index.html', title=title,pitches = pitches, education = education, love = love, business = business, interview = interview, promotion = promotion, all_category=all_category, all_pitches=all_pitches)
 
 
 @main.route('/comment/new/<int:pitch_id>', methods = ['GET','POST'])
@@ -43,7 +42,8 @@ def new_comment(pitch_id):
     all_comments = Comments.query.filter_by(pitch_id = pitch_id).all()
     return render_template('comment.html', comment_form = comment_form, comment = all_comments, pitch = pitch ) 
 
-main.route('/pitches/new', methods = ['POST','GET'])
+
+@main.route('/pitches/new', methods = ['POST','GET'])
 @login_required
 def new_pitch():
     form = PitchForm()
@@ -59,7 +59,7 @@ def new_pitch():
         db.session.commit()
         return redirect(url_for('main.index'))
     
-    return render_template('new_pitch.html', form = form)
+    return render_template('new.html', form = form)
 
 @main.route('/categories/<int:id>')
 def category(id):
@@ -98,7 +98,7 @@ def update_profile(name):
 
         return redirect(url_for('.profile',name=user.username))
 
-    return render_template('profile/update.html',form =form)
+    return render_template('profdile/update.html',form =form)
 
 @main.route('/user/<name>/update/pic',methods= ['POST'])
 @login_required
@@ -111,6 +111,13 @@ def update_pic(name):
         db.session.commit()
     return redirect(url_for('main.profile',name=name))
 
+
+@main.route('/category/love',methods= ['GET'])
+def displayLoveCategory():
+    love = Pitch.get_pitches('love')
+    return render_template('love.html',love = love)
+
+
 @main.route('/category/business',methods= ['POST','GET'])
 def displayBusinessCategory():
     business = Pitch.get_pitches('business')
@@ -118,7 +125,7 @@ def displayBusinessCategory():
 
 @main.route('/category/promotion',methods= ['POST','GET'])
 def displayPromotionCategory():
-    promotion= Pitch.get_pitches('publicy')
+    promotion= Pitch.get_pitches('promotion')
     return render_template('publicity.html',promotion = promotion)
 
 @main.route('/category/education',methods= ['POST','GET'])
@@ -132,36 +139,4 @@ def displayInterviewCategory():
     return render_template('interview.html',interview = interview)
 
 
-# @main.route('/update/<int:id>', methods=['GET', 'POST'])
-# def update_post(id):
-#     post = post.query.get_or_404(id)
-#     post_form = PostForm()
-#     if post_form.validate_on_submit():
-#         post.title = post_form.title.data
-#         post.content = post_form.content.data
-#         db.session.add(post)
-#         db.session.commit()
 
-#         return redirect(url_for('main.index'))
-#     elif request.method == 'GET':
-#         form.title.data = post.title
-#         form.post.data = post.content
-#     return render_template('edit_post.html',post=postr, post_form=post_form)
-
-
-#  delete post
-# @main.route('/delete_post/<int:id>', methods=['GET', 'POST'])
-
-# def delete_post(id):
-#     post = Post.query.get_or_404(id)
-#     db.session.delete(post)
-#     db.session.commit()
-#     return redirect(url_for('main.index')) 
-
-# @main.route("/post/<int:id>/<int:comment_id>/delete")
-# def delete_comment(id, comment_id):
-#     post = Post.query.filter_by(id = id).first()
-#     comment = Comment.query.filter_by(id = comment_id).first()
-#     db.session.delete(comment)
-#     db.session.commit()
-#     return redirect(url_for("main.post", id = post.id))
