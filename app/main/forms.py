@@ -1,27 +1,25 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField,PasswordField,SubmitField
-from wtforms import ValidationError
-from wtforms.validators import Required,Email,EqualTo
-from ..models import User
-from wtforms import StringField,PasswordField,BooleanField,SubmitField
+from wtforms import StringField, TextAreaField, SubmitField, SelectField
+from wtforms.validators import Required
 
-class RegistrationForm(FlaskForm):
-    email = StringField('Your Email Address', validators=[Required(),Email()])
-    username  = StringField('Enter your username', validators=[Required()])
-    password = PasswordField('Password', validators=[Required(), EqualTo('password_confirm',message ='Password must match')])
-    password_confirm =  PasswordField('Confirm Passwords',validators = [Required()])
-    submit = SubmitField('Sign Up')
 
-    def validate_email(self, data_field):
-        if User.query.filter_by(email = data_field.data).first():
-            raise ValidationError('There is an account with that email')
-    
-    def validate_username(self,data_field):
-        if User.query.filter_by(username = data_field.data).first():
-            raise ValidationError('That username is already used')
+class PitchForm(FlaskForm):
+    title = StringField("Your Nickname", validators=[Required()])
+    description = TextAreaField("Wrie your pitch..", validators=[Required()])
+    category = SelectField("Category", choices=[('Education','Education'),('Business','Business'),('Interview', 'Interview'),('Publicity', 'Publicity')], validators=[Required()])
+    submit = SubmitField("Submit Pitch")
 
-class LoginForm(FlaskForm):
-    email = StringField('Your Email Address',validators=[Required(),Email()])
-    password = PasswordField('Password',validators =[Required()])
-    remember = BooleanField('Remember me')
-    submit = SubmitField('Sign In')
+class CommentsForm(FlaskForm):
+    comment = TextAreaField('Leave your comment', validators=[Required()])
+    submit = SubmitField("Comments")
+
+class UpdateProfile(FlaskForm):
+    bio = TextAreaField("Tell us about yourslef.", validators=[Required()])  
+    submit = SubmitField('Submit')
+
+class UpvoteForm(FlaskForm):
+	submit = SubmitField()
+
+
+class DownvoteForm(FlaskForm):
+	submit = SubmitField()
