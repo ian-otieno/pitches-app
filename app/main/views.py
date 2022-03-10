@@ -19,7 +19,7 @@ def index():
 
     all_category = PitchCategory.get_categories()
     all_pitches = Pitch.query.order_by('id').all()
-    title = "This is a golden opportunity change your life"
+    title = "This is a golden opportunity to change your life. you only have 60 seconds to make an Impression, this can empower you or break you. How do we ensure that you use your 1 minute to say something very Creative?  Present yourself in the most intresting way possible."
    
     return render_template('index.html', title=title,pitches = pitches, education = education, love = love, business = business, interview = interview, promotion = promotion, all_category=all_category, all_pitches=all_pitches)
 
