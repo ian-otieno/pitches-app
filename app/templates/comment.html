@@ -1,5 +1,35 @@
-{%extends 'base.html' %}
-{%import 'bootstrap/wtf.html' as wtf%}
-{%block content%}
-    
+{% extends 'bootstrap/base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% import 'macros.html' as macro %}
+{% block navbar %}
+{% include 'navbar.html'%}
 {%endblock%}
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+{% block content%}
+<div class="row">
+    <div class="card" style="font-family: Pangolin;">
+        <div class="card-header text-center"> 
+            <h4><a>{{pitch.title}}</a></h4>
+            <div class="card-body">
+                <h5 class="card-text text-center">{{pitch.comment}}.</h5>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="jumbotron">
+                {{wtf.quick_form(comment_form)}}
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="jumbotron">
+        <div class="col-md-12">
+            <h4 style="color:  rgb(14, 114, 14); text-align: center;text-underline-position: below; font-size: large;font-family: Pangolin;"></h4>
+            {{ macro.displayComment(comment) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

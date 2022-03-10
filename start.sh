@@ -1,3 +1,3 @@
-SECRET_KEY='iano'
-MAIL_USERNAME='ianowino3@gmail.com'
-MAIL_PASSWORD='iano2345'
+export SECRET_KEY='iano'
+export MAIL_USERNAME='ianowino2@gmail.com
+export SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://moringa:moringa@localhost/pitching'

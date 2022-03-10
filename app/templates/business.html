@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macro %}
+{% block navbar %}
+{% include 'navbar.html'%}
+{%endblock%}
+
+{%block content%}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container text-center">
+      <h2 class="card-title h1-responsive font-bold">Business Pitches</h2>
+    </div>
+  </div>
+    <hr>
+    <div class="row">
+        {{macro.display(business)}}
+    </div>
+</div>
+{%endblock%}

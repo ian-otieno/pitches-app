@@ -16,7 +16,7 @@ def index():
     education = Pitch.query.filter_by(category = 'Education').all()
     business = Pitch.query.filter_by(category = 'Business').all()
     interview = Pitch.query.filter_by(category = 'Interview').all()
-    publicity = Pitch.query.filter_by(category = 'Publicity').all()
+    publicity= Pitch.query.filter_by(category = 'promotion').all()
 
     all_category = PitchCategory.get_categories()
     all_pitches = Pitch.query.order_by('id').all()
@@ -98,7 +98,7 @@ def update_profile(name):
 
         return redirect(url_for('.profile',name=user.username))
 
-    return render_template('profdile/update.html',form =form)
+    return render_template('profile/update.html',form =form)
 
 @main.route('/user/<name>/update/pic',methods= ['POST'])
 @login_required
