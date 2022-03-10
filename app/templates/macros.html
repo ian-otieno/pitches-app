@@ -1,7 +1,36 @@
+{% extends 'bootstrap/base.html' %}
+{% macro display(category_list) %}
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Viaoda+Libre&display=swap" rel="stylesheet">
+<div class="row">
+	{% if category_list %}
+	{% for category in category_list %}
+	<div class="col-md-6" style="background-color: rgb(192, 169, 138);">
+		<div class="thumbnail text-center">
+			<h3 class="card-header" >{{category.title }}</h3>
+			<h5 class="card-header" style="font-style: italic; font-size: large;font-weight: bolder;">{{category.category}}</h5>
+			<div class="card-body">
+				<blockquote class="blockquote mb-0">
+					<h2 style="font-family: Viaoda Libre;">{{category.description}}</h2>
+					<footer class="blockquote-footer"> Posted by {{category.user.username}} <br> <strong><em>{{category.date_posted}}</em></strong></footer>
+				</blockquote>
 
+				<a href="{{url_for('main.new_comment',pitch_id = category.id)}}" class="btn btn-success">Comment</a>
+				<a href="{{url_for('main.index',pitch_id = category.id)}}" class="btn btn-primary btn-sm"><i></i>Like
+					<span></span></a>
+				<a href="{{url_for('main.index',pitch_id = category.id)}}" class="btn btn-warning btn-sm"><i
+						class="far fa-thumbs-up"></i>Dislike<span</span></a>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+	{% else %}
+	{% endif %}
+</div>
+{% endmacro %}
 {% macro displayComment(comments) %}
 <ul>
-	<h2>Comments:</h2>
+	<h1>COMMENTS:</h1>
 	{% if comments %}
 	{% for comment in comments %}
 	<div class="row text-center">
@@ -18,7 +47,7 @@
 	{% endfor %}
 	{% else %}
 
-	<h3>Be the first to add a comment on this Pitch !</h3>
+	<h3>Be the first to comment on this Pitch !</h3>
 	{%endif%}
 </ul>
 {% endmacro %}

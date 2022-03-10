@@ -2,10 +2,10 @@
 {% import 'bootstrap/wtf.html' as wtf%}
 
 {% block content %}
-<div class="container" style="background-color: pink;"> 
+<div class="container" style="background-color: purple;"> 
     <div class="row">
       <div class= "col-md-2"> </div>
-      <div class="col-md-8">
+      <div class="col-md-6">
       <!--Flash message -->
       {% for message in get_flashed_messages() %}
         <div class="alert alert-danger">
@@ -20,3 +20,5 @@
      <div clas="col-md-2"> </div>
     </div>
 </div>
+
+{% endblock%}

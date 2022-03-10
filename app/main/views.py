@@ -16,7 +16,7 @@ def index():
     education = Pitch.query.filter_by(category = 'Education').all()
     business = Pitch.query.filter_by(category = 'Business').all()
     interview = Pitch.query.filter_by(category = 'Interview').all()
-    publicity= Pitch.query.filter_by(category = 'promotion').all()
+    publicity= Pitch.query.filter_by(category = 'publicity').all()
 
     all_category = PitchCategory.get_categories()
     all_pitches = Pitch.query.order_by('id').all()
